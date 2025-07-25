@@ -1,20 +1,19 @@
 import { AnimatePresence, motion } from "motion/react"
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect } from "react"
+import { Twitter, Github } from "lucide-react"
 
 export default function NewAbout({
   className,
-  onAboutDotLoad,
   onHover,
 }: {
   className?: string
-  onAboutDotLoad?: (rect: DOMRect) => void
   onHover?: () => void
 }) {
-  const startDateEpoch = 1644508311000 // milliseconds
+  const [yearsElapsedValue, setYearsElapsedValue] = useState("calculating...")
+  const [timeGreeting, setTimeGreeting] = useState<string>("Hello")
 
   const msPerYear = 1000 * 60 * 60 * 24 * 365.2425
-
-  const [yearsElapsedValue, setYearsElapsedValue] = useState("calculating...")
+  const startDateEpoch = 1644508311000 // milliseconds
 
   const calculateYearsSince = (epoch: number) => {
     const now = Date.now()
@@ -29,22 +28,27 @@ export default function NewAbout({
 
   useEffect(() => {
     updateYearsElapsed()
-    const intervalId = setInterval(updateYearsElapsed, 10000) // Changed from 25ms to 1000ms (1 second)
+    const intervalId = setInterval(updateYearsElapsed, 10000)
+    setTimeGreeting(getTimeGreeting())
 
     return () => {
       clearInterval(intervalId)
     }
   }, [])
 
-  const blueCircleRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    if (blueCircleRef.current && onAboutDotLoad) {
-      onAboutDotLoad(blueCircleRef.current.getBoundingClientRect())
-    }
-  }, [onAboutDotLoad])
-
   const [showingElapsedTime, setShowingElapsedTime] = useState(true)
+
+  function getTimeGreeting() {
+    const now = new Date()
+    const hour = now.getHours()
+    if (hour > 18) {
+      return "Good evening"
+    } else if (hour > 12) {
+      return "Good afternoon"
+    } else {
+      return "Good morning"
+    }
+  }
 
   return (
     <div
@@ -67,9 +71,11 @@ export default function NewAbout({
         ABOUT
       </p>
       <motion.div>
-        I have been a developer{" "}
+        {timeGreeting}, my name is{" "}
+        <div className="inline-block relative">Bartek</div>, and I have been a
+        developer{" "}
         <AnimatePresence mode="wait">
-          <motion.span
+          <motion.div
             key={showingElapsedTime ? "elapsed" : "since"}
             initial={{ opacity: 0.5, filter: "blur(1px)", y: -2 }}
             animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
@@ -80,16 +86,12 @@ export default function NewAbout({
             {showingElapsedTime
               ? `for ${yearsElapsedValue} years`
               : "since 10th February '22"}
-          </motion.span>
+          </motion.div>
         </AnimatePresence>
         . I am a computer science student at the University of York with a love
         to <span className="text-blue-600 font-sans italic">craft</span> nice
         things.
       </motion.div>
-      <div
-        ref={blueCircleRef}
-        className="absolute top-[6px] -left-8 rounded-full w-4.5 h-4.5 bg-red-200"
-      ></div>
     </div>
   )
 }

@@ -3,25 +3,26 @@
 @plugin "tailwindcss-motion";
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+    font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1.5;
+    font-weight: 400;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 @theme {
-  --font-geist: "Geist", sans-serif;
-  --font-geist-mono: "Geist Mono", monospace;
-  --font-ibm-plex-mono: "IBM Plex Mono", monospace;
-  --font-jetbrains-mono: "JetBrains Mono", monospace;
+    --font-geist: "Geist", sans-serif;
+    --font-geist-mono: "Geist Mono", monospace;
+    --font-ibm-plex-mono: "IBM Plex Mono", monospace;
+    --font-jetbrains-mono: "JetBrains Mono", monospace;
+    --font-sf-pro-rounded: "SF Pro Rounded", sans-serif;
 }
 
 #root {
-  width: 100%;
-  display: flex;
-  justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
