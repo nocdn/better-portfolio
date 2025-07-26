@@ -1,5 +1,6 @@
 import Unscrambling from "./Unscrambling"
-import { useRef, useEffect, useState } from "react"
+import { useRef, useEffect } from "react"
+import { motion } from "motion/react"
 
 export default function NewProjects({
   className,
@@ -19,8 +20,6 @@ export default function NewProjects({
     }
   }, [onDotLoad])
 
-  const [shownIndex, setShownIndex] = useState(0)
-
   type Project = {
     title: string
     description: string
@@ -36,6 +35,12 @@ export default function NewProjects({
       chips: ["react", "flask"],
     },
     {
+      title: "Shifts",
+      description: "Rota management, and shift management system",
+      demoURL: "https://whisper.bartoszbak.org/",
+      chips: ["react", "supabase", "nextjs"],
+    },
+    {
       title: "Books",
       description:
         "Recreation of (Basic) Bookmarks in Svelte with extra features",
@@ -43,50 +48,43 @@ export default function NewProjects({
       chips: ["svelte", "sqlite"],
     },
     {
+      title: "MCQs",
+      description:
+        "Interactive psychology practice questions built for my friends",
+      demoURL: "https://mcqs.bartoszbak.org/",
+      chips: ["react", "supabase", "lambda"],
+    },
+    {
       title: "Quiet Watch",
       description: "Intelligent ad segment remover powered by LLMs",
       sourceURL: "https://github.com/nocdn/ad-segment-trimmer",
+      chips: ["python"],
     },
     {
       title: "Echoes",
       description: "Full stack, self-hostable video/audio transcription app",
       demoURL: "https://whisper.bartoszbak.org/",
-    },
-    {
-      title: "MCQs",
-      description:
-        "Interactive psychology practice question built for my friends",
-      demoURL: "https://mcqs.bartoszbak.org/",
-    },
-    {
-      title: "Shifts",
-      description: "Rota management, and shift management system",
-      demoURL: "https://whisper.bartoszbak.org/",
-      chips: ["react", "supabase", "nextjs"],
+      chips: ["python"],
     },
   ]
 
-  useEffect(() => {
-    for (let i = 0; i < projects.length; i++) {
-      setTimeout(() => {
-        setShownIndex((prev) => prev + 1)
-      }, i * 125)
-    }
-  }, [])
-
   const unscramblingElements = projects.map((project, index) => (
-    <div className="flex flex-col gap-1" key={index}>
-      {index < shownIndex && (
-        <Unscrambling
-          title={project.title}
-          description={project.description}
-          key={index}
-          demoURL={project.demoURL}
-          sourceURL={project.sourceURL}
-          chips={project.chips}
-        />
-      )}
-    </div>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.65, ease: [0.175, 0.885, 0.32, 1.0] }}
+      className="flex flex-col gap-1"
+      key={index}
+    >
+      <Unscrambling
+        title={project.title}
+        description={project.description}
+        key={index}
+        demoURL={project.demoURL}
+        sourceURL={project.sourceURL}
+        chips={project.chips}
+      />
+    </motion.div>
   ))
 
   return (

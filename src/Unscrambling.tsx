@@ -75,6 +75,16 @@ export default function Unscrambling({
       textColor: "#008DFF",
       label: "SQLite",
     },
+    lambda: {
+      bgColor: "#FFF4EE",
+      textColor: "#E68F37",
+      label: "Lambda",
+    },
+    python: {
+      bgColor: "#FDF4DC",
+      textColor: "#E6961F",
+      label: "Python",
+    },
   }
 
   useEffect(() => {
@@ -168,9 +178,9 @@ export default function Unscrambling({
                 {showingChips && (
                   <motion.div
                     className="flex items-center gap-1"
-                    initial={{ opacity: 0, y: -10, filter: "blur(2px)" }}
+                    initial={{ opacity: 0, y: -7, filter: "blur(2px)" }}
                     animate={{ opacity: 1, y: 0, filter: "blur(0)" }}
-                    exit={{ opacity: 0, y: 7, filter: "blur(3px)" }}
+                    exit={{ opacity: 0, y: 5, filter: "blur(2px)" }}
                     style={{ gridArea: "1/1" }}
                   >
                     {chipsElements}{" "}

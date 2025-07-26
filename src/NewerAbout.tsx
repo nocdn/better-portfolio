@@ -1,4 +1,4 @@
-import { motion } from "motion/react"
+import { AnimatePresence, motion } from "motion/react"
 import { useState, useEffect } from "react"
 import Globe from "./icons/globe"
 
@@ -47,7 +47,12 @@ export default function NewerAbout({
         fontSize: "19px",
       }}
       onMouseEnter={() => {
+        setShowLocationIcon(true)
         onHover?.()
+      }}
+      onMouseLeave={() => {
+        setShowLocationIcon(false)
+        setShowingCSIcon(false)
       }}
     >
       <p className="mb-2 font-jetbrains-mono text-gray-500 text-[16px] font-medium">
@@ -56,10 +61,28 @@ export default function NewerAbout({
       <motion.div>
         {timeGreeting}, I'm{" "}
         <div className="inline-block relative text-blue-600">Bartek</div>. I am
-        a front-end developer based in{" "}
-        <div className="inline-flex items-center">
-          <Globe width={20} />
-        </div>{" "}
+        a developer based in{" "}
+        <motion.span layout className="inline-block">
+          <AnimatePresence>
+            {showingLocationIcon && (
+              <motion.div
+                initial={{ scale: 0, width: 0, rotate: 270 }}
+                animate={{ scale: 1, width: "auto", rotate: 0 }}
+                exit={{ scale: 0, width: 0 }}
+                transition={{
+                  duration: 0.65,
+                  ease: [0.175, 0.885, 0.32, 1.0],
+                }}
+                className="flex items-center overflow-hidden"
+                style={{ originX: 0.5 }}
+              >
+                <motion.div className="mx-[1px]">
+                  <Globe size={18} className="mt-1" />
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </motion.span>{" "}
         England, studying computer science at the University of York with a
         passion to <span className="text-blue-600 font-sans italic">craft</span>{" "}
         nice things.

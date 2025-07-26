@@ -1,7 +1,7 @@
-const Globe = ({ width = 24, height = 24, strokeWidth = 1.6, ...props }) => (
+const Globe = ({ size = 24, strokeWidth = 1.6, ...props }) => (
   <svg
-    width={width}
-    height={height}
+    width={size}
+    height={size}
     strokeWidth={strokeWidth}
     viewBox="0 0 24 24"
     fill="none"
