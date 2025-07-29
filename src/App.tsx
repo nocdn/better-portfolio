@@ -1,8 +1,6 @@
 import NewerAbout from "./NewerAbout"
 import NewProjects from "./NewProjects"
 import Contact from "./Contact"
-import AppearingIcon from "./AppearingIcon"
-import { useState } from "react"
 
 function App() {
   return (

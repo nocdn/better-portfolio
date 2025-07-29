@@ -75,7 +75,6 @@ export default function Contact({ className }: { className?: string }) {
                   >
                     {showingCopied ? (
                       <>
-                        copied:{" "}
                         <span className="text-blue-600/90">
                           contact@bartoszbak.org
                         </span>
