@@ -4,6 +4,7 @@ import { Magnetic } from "./Magnetic"
 
 export default function Contact({ className }: { className?: string }) {
   const [showingCopied, setShowCopied] = useState(false)
+  const [hoveringTwitter, setHoveringTwitter] = useState(false)
 
   return (
     <div className={`${className} w-full pr-12`}>
@@ -28,9 +29,38 @@ export default function Contact({ className }: { className?: string }) {
             <Magnetic intensity={0.2}>
               <a
                 href="https://twitter.com/nocdns"
-                className="font-sf-pro-rounded text-gray-500 hover:text-blue-800 transition-colors"
+                className="font-sf-pro-rounded text-gray-500 hover:text-blue-800 transition-colors relative"
+                onMouseEnter={() => {
+                  setHoveringTwitter(true)
+                  setTimeout(() => setHoveringTwitter(false), 300)
+                }}
               >
                 @nocdns
+                <AnimatePresence>
+                  {hoveringTwitter && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 0, scale: 0.8 }}
+                      animate={{
+                        opacity: 1,
+                        y: -32,
+                        x: 27,
+                        rotate: 8.5,
+                        scale: 1,
+                      }}
+                      exit={{
+                        opacity: 0,
+                        filter: "blur(1px)",
+                      }}
+                      transition={{
+                        duration: 0.5,
+                        ease: [0.215, 0.61, 0.355, 1],
+                      }}
+                      className="absolute left-[calc(50%-1px)] top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none font-semibold text-[16px] text-blue-600/50 whitespace-nowrap"
+                    >
+                      building in public
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </a>
             </Magnetic>
           </p>
@@ -59,7 +89,7 @@ export default function Contact({ className }: { className?: string }) {
                   e.preventDefault()
                   navigator.clipboard.writeText("contact@bartoszbak.org")
                   setShowCopied(true)
-                  setTimeout(() => setShowCopied(false), 1500)
+                  setTimeout(() => setShowCopied(false), 1000)
                 }}
                 href="mailto:contact@bartoszbak.org"
                 className="font-sf-pro-rounded text-gray-500 hover:text-pink-800 transition-colors"
@@ -75,9 +105,7 @@ export default function Contact({ className }: { className?: string }) {
                   >
                     {showingCopied ? (
                       <>
-                        <span className="text-blue-600/90">
-                          contact@bartoszbak.org
-                        </span>
+                        <span className="text-blue-600/90">[ copied ]</span>
                       </>
                     ) : (
                       "[ copy ]"

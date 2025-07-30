@@ -150,6 +150,7 @@ export default function NewerAbout({
                   hours={parseInt(bstTimeString.split(":")[0])}
                   minutes={parseInt(bstTimeString.split(":")[1])}
                   size={23}
+                  showBellArms={true}
                 />
               </motion.div>
             )}

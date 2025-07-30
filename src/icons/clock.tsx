@@ -8,6 +8,8 @@ type AlarmClockIconProps = {
   size?: number
   color?: string
   strokeWidth?: number
+  showFeet?: boolean
+  showBellArms?: boolean
 } & React.SVGProps<SVGSVGElement>
 
 const AlarmClockIcon: React.FC<AlarmClockIconProps> = ({
@@ -18,6 +20,8 @@ const AlarmClockIcon: React.FC<AlarmClockIconProps> = ({
   size = 24,
   color = "currentColor",
   strokeWidth = 2,
+  showFeet = false,
+  showBellArms = false,
   ...rest
 }) => {
   const [time, setTime] = useState(new Date())
@@ -78,12 +82,20 @@ const AlarmClockIcon: React.FC<AlarmClockIconProps> = ({
       {...rest}
     >
       {/* bell arms */}
-      <path d="M5 3 2 6" />
-      <path d="m22 6-3-3" />
+      {showBellArms && (
+        <>
+          <path d="M5 3 2 6" />
+          <path d="m22 6-3-3" />
+        </>
+      )}
 
       {/* feet */}
-      {/* <path d="M6.38 18.7 4 21" />
-      <path d="M17.64 18.67 20 21" /> */}
+      {showFeet && (
+        <>
+          <path d="M6.38 18.7 4 21" />
+          <path d="M17.64 18.67 20 21" />
+        </>
+      )}
 
       {/* dial */}
       <circle cx="12" cy="13" r="8" strokeWidth={strokeWidth + 0.25} />
