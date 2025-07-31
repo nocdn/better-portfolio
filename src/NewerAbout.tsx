@@ -79,7 +79,7 @@ export default function NewerAbout({
             animate={{
               opacity: hoveringName ? 0 : 1,
               y: hoveringName ? -5 : 0,
-              filter: hoveringName ? "blur(2px)" : "blur(0px)",
+              filter: hoveringName ? "blur(1px)" : "blur(0px)",
               transition: {
                 opacity: { duration: hoveringName ? 0 : 0.35 },
                 y: { duration: 0.35 },
@@ -97,9 +97,12 @@ export default function NewerAbout({
           <AnimatePresence>
             {hoveringName && (
               <motion.div
-                initial={{ opacity: 0, y: -5 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ opacity: 0, y: -5, filter: "blur(3px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                 exit={{ opacity: 0, y: 3, filter: "blur(2px)" }}
+                transition={{
+                  ease: [0.23, 1, 0.32, 1],
+                }}
                 className="absolute left-[calc(50%-1px)] top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none font-sf-pro-rounded font-semibold text-[18px]"
                 style={{ opacity: 0.1 }}
               >
@@ -117,6 +120,7 @@ export default function NewerAbout({
                   y: 0,
                   x: 10,
                   filter: "blur(1px)",
+                  transition: { duration: 0.15 },
                 }}
                 className="absolute left-[calc(50%-1px)] top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none font-sf-pro-rounded font-semibold text-[16px] text-blue-600/75"
                 style={{ opacity: 0.1 }}
@@ -142,6 +146,7 @@ export default function NewerAbout({
                   x: -13,
                   filter: "blur(1px)",
                   scale: 0.7,
+                  transition: { duration: 0.15 },
                 }}
                 className="absolute left-[calc(50%-1px)] top-1/2 -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none font-sf-pro-rounded font-semibold text-[16px] text-blue-600"
                 style={{ opacity: 0.1 }}

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react"
+// based on the lucide clock icon
 
 type AlarmClockIconProps = {
   date?: Date
@@ -27,10 +28,9 @@ const AlarmClockIcon: React.FC<AlarmClockIconProps> = ({
   const [time, setTime] = useState(new Date())
 
   useEffect(() => {
-    // If specific time props are provided, we don't need to update the time.
+    // if specific time props are provided, don't need to update the time.
     if (date || (hours !== null && minutes !== null)) {
-      // If a date was previously being used but isn't anymore,
-      // we need to make sure we set the time to the current time.
+      // if date was previously being used but isn't anymore, need to make sure to set the time to the current time.
       if (date) {
         setTime(date)
       }
@@ -65,9 +65,9 @@ const AlarmClockIcon: React.FC<AlarmClockIconProps> = ({
     s = time.getSeconds()
   }
 
-  // calc angles
-  const minuteAngle = m * 6 + s * 0.1 // 360°/60 = 6°
-  const hourAngle = (h % 12) * 30 + m * 0.5 // 360°/12 = 30°
+  // getting the angles to move the hands
+  const minuteAngle = m * 6 + s * 0.1
+  const hourAngle = (h % 12) * 30 + m * 0.5
 
   return (
     <svg
