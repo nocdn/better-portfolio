@@ -36,16 +36,16 @@ export default function NewProjects({
     },
     {
       title: "Shifts",
-      description: "Rota management, and shift management system",
-      demoURL: "https://whisper.bartoszbak.org/",
-      chips: ["react", "supabase", "nextjs"],
+      description: "Full stack rota and shift management system",
+      demoURL: "https://github.com/nocdn/shifts",
+      chips: ["react", "supabase", "nextjs", "betterAuth"],
     },
     {
       title: "Books",
       description:
         "Recreation of (Basic) Bookmarks in Svelte with extra features",
-      demoURL: "https://bookmarks.bartoszbak.org/",
-      chips: ["svelte", "sqlite"],
+      sourceURL: "https://github.com/nocdn/booksr",
+      chips: ["react", "sqlite"],
     },
     {
       title: "MCQs",
@@ -98,7 +98,7 @@ export default function NewProjects({
         ref={dotRef}
         className="absolute top-[6px] -left-8 rounded-full w-4.5 h-4.5"
       ></div>
-      <p className="font-jetbrains-mono font-medium text-[16px] text-gray-500 mb-2">
+      <p className="font-jetbrains-mono font-semibold text-[16px] text-gray-500/65 mb-2">
         PROJECTS
       </p>
       <div

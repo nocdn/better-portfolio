@@ -85,6 +85,11 @@ export default function Unscrambling({
       textColor: "#E6961F",
       label: "Python",
     },
+    betterAuth: {
+      bgColor: "lightGray",
+      textColor: "black",
+      label: "Better-Auth",
+    },
   }
 
   useEffect(() => {

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react"
-import { useState, useEffect } from "react"
-import Globe from "./icons/globe"
+import { useState, useEffect, useRef } from "react"
 import ClockIcon from "./icons/clock"
+import { Magnetic } from "./Magnetic"
 
 export default function NewerAbout({
   className,
@@ -11,19 +11,10 @@ export default function NewerAbout({
   onHover?: () => void
 }) {
   const [timeGreeting, setTimeGreeting] = useState<string>("Hello")
-  const [showingLocationIcon, setShowLocationIcon] = useState<boolean>(false)
-  const [showingCSIcon, setShowingCSIcon] = useState<boolean>(false)
+  const firstPosition = useRef(null)
 
   useEffect(() => {
     setTimeGreeting(getTimeGreeting())
-
-    setTimeout(() => {
-      setShowLocationIcon(true)
-    }, 500)
-
-    setTimeout(() => {
-      setShowingCSIcon(true)
-    }, 700)
   }, [])
 
   function getTimeGreeting() {
@@ -44,6 +35,7 @@ export default function NewerAbout({
     hour: "2-digit",
     minute: "2-digit",
     hour12: false,
+    timeZone: "Europe/London",
   })
 
   console.log(bstTimeString.split(":")[0])
@@ -63,10 +55,18 @@ export default function NewerAbout({
         onHover?.()
       }}
     >
-      <p className="mb-2 font-jetbrains-mono text-gray-500 text-[16px] font-medium">
+      <div className="mb-2 font-jetbrains-mono text-gray-500/65 text-[16px] font-medium relative ">
         ABOUT
-      </p>
-      <motion.div>
+        <Magnetic intensity={0.2}>
+          <motion.div
+            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.1 }}
+            ref={firstPosition}
+            className="w-4 h-4 bg-blue-500/85 rounded-full absolute top-1/2 -translate-y-1/2 -translate-x-7"
+          ></motion.div>
+        </Magnetic>
+      </div>
+      <motion.div className="pr-8">
         {timeGreeting}, I'm{" "}
         <div className="inline-block relative text-blue-600">
           <motion.span
@@ -161,34 +161,14 @@ export default function NewerAbout({
             )}
           </AnimatePresence>
         </div>
-        . I am a developer based in{" "}
-        <motion.span layout className="inline-block">
-          <AnimatePresence>
-            {showingLocationIcon && (
-              <motion.div
-                initial={{ scale: 0, width: 0, rotate: 270 }}
-                animate={{ scale: 1, width: "auto", rotate: 0, y: 2.5 }}
-                exit={{ scale: 0, width: 0 }}
-                transition={{
-                  duration: 0.75,
-                  ease: [0.175, 0.885, 0.32, 1.0],
-                }}
-                className="flex items-center overflow-hidden"
-                style={{ originX: 0.5 }}
-              >
-                <motion.div className="mx-[1px]">
-                  <Globe size={19} strokeWidth={1.75} />
-                </motion.div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </motion.span>{" "}
-        England, studying computer science at the University of York with a
-        passion to{" "}
+        . I am a front-end developer based in England, studying computer science
+        at the University of
+        York.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I love
+        to{" "}
         <span className="text-blue-600 font-sans italic transition-all duration-300 hover:font-bold">
           craft
         </span>{" "}
-        nice things.
+        tools and experiences for other developers.
       </motion.div>
     </div>
   )

@@ -8,7 +8,7 @@ export default function Contact({ className }: { className?: string }) {
 
   return (
     <div className={`${className} w-full pr-12`}>
-      <p className="font-jetbrains-mono font-medium text-[16px] text-gray-500 mb-2.5">
+      <p className="font-jetbrains-mono font-medium text-[16px] text-gray-500/65 mb-2.5">
         CONTACT
       </p>
       <div
@@ -117,8 +117,8 @@ export default function Contact({ className }: { className?: string }) {
           </div>
         </div>
         <p className="w-[16rem] text-[18px] text-[#161616]">
-          Please reach out with any and all questions or opportunities at any
-          time <span className="font-sf-pro-rounded">:)</span>
+          Please feel free to reach out for any reason, at any time{" "}
+          <span className="font-sf-pro-rounded">:)</span>
         </p>
       </div>
     </div>
