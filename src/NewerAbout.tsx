@@ -48,12 +48,18 @@ export default function NewerAbout({
 
   const extraIntro = (
     <div>
-      Hello, I am motivated second year computer science student with skills in
-      web and backend applications. I am highly technical and proficient in
-      TypeScript, React, Next.js, Python and Flask. I have gained some
-      experience with AWS and GCP through personal projects and experiences. I
-      am a very agile learner and always looking for new challenges to grow as a
-      developer.
+      Hello, I am a motivated second year computer science student with skills
+      in web and backend applications. I am highly technical and proficient in{" "}
+      <span className="text-blue-600/75">TypeScript</span>,{" "}
+      <span className="text-blue-600/75">React</span>,{" "}
+      <span className="text-blue-600/75">Next.js</span>,{" "}
+      <span className="text-blue-600/75">Python</span> and{" "}
+      <span className="text-blue-600/75">Flask</span>. Through personal
+      projects, I have gained some experience with{" "}
+      <span className="text-blue-600/75">AWS</span> and{" "}
+      <span className="text-blue-600/75">GCP</span>. I have also experimented
+      with mobile development through React Native. I am a very agile learner
+      and always looking for new challenges to grow as a developer.
     </div>
   )
 

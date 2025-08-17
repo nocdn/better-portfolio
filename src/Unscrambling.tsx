@@ -86,7 +86,7 @@ export default function Unscrambling({
       label: "Python",
     },
     betterAuth: {
-      bgColor: "lightGray",
+      bgColor: "#E0E0E0",
       textColor: "black",
       label: "Better-Auth",
     },

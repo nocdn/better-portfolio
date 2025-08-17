@@ -29,16 +29,17 @@ export default function NewProjects({
   }
   const projects: Project[] = [
     {
+      title: "Shifts",
+      description:
+        "Full stack rota and shift management system with authentication",
+      demoURL: "https://github.com/nocdn/shifts",
+      chips: ["react", "supabase", "nextjs", "betterAuth"],
+    },
+    {
       title: "Vanish",
       description: "Temporary emails through Cloudflare, with frontend and API",
       sourceURL: "https://github.com/nocdn/vanish",
       chips: ["react", "flask"],
-    },
-    {
-      title: "Shifts",
-      description: "Full stack rota and shift management system",
-      demoURL: "https://github.com/nocdn/shifts",
-      chips: ["react", "supabase", "nextjs", "betterAuth"],
     },
     {
       title: "Books",
