@@ -80,7 +80,7 @@ export default function NewerAbout({
         setShowingExtrasHint(false)
       }}
     >
-      <div className="mb-2 font-jetbrains-mono text-gray-500/65 text-[16px] font-medium relative flex items-center gap-1">
+      <div className="mb-2 font-jetbrains-mono text-gray-500/60 text-[16px] font-semibold relative flex items-center gap-1">
         ABOUT
         <Magnetic intensity={0.2}>
           <motion.div
@@ -134,7 +134,7 @@ export default function NewerAbout({
       ) : (
         <motion.div className="pr-8">
           {timeGreeting}, I'm{" "}
-          <div className="inline-block relative text-blue-600">
+          <div className="inline-block relative ">
             <motion.span
               onMouseEnter={() => setHoveringName(true)}
               onMouseLeave={() => setHoveringName(false)}
@@ -230,11 +230,7 @@ export default function NewerAbout({
           . I am a front-end developer based in England, studying computer
           science at the University of
           York.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; I
-          love to{" "}
-          <span className="text-blue-600 font-sans italic transition-all duration-300 hover:font-bold">
-            craft
-          </span>{" "}
-          tools and experiences for other developers.
+          love to craft tools and experiences for other developers.
         </motion.div>
       )}
     </div>

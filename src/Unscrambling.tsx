@@ -11,6 +11,7 @@ export default function Unscrambling({
   demoURL,
   sourceURL,
   chips = [],
+  animate = true,
 }: {
   className?: string
   title: string
@@ -18,31 +19,38 @@ export default function Unscrambling({
   demoURL?: string
   sourceURL?: string
   chips?: string[]
+  animate?: boolean
 }) {
   const titleRef = useRef<HTMLParagraphElement>(null)
   const descriptionRef = useRef<HTMLParagraphElement>(null)
   const [showDescription, setShowDescription] = useState(false)
   useEffect(() => {
-    gsap.registerPlugin(ScrambleTextPlugin)
+    if (animate) {
+      gsap.registerPlugin(ScrambleTextPlugin)
 
-    if (titleRef.current) {
-      gsap.to(titleRef.current, {
-        duration: 1.5, // ← 2 seconds instead of 1
-        scrambleText: {
-          text: title,
-          chars:
-            "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789",
-          revealDelay: 0.1,
-          speed: 0.5, // ← updates scrambled chars every 0.5s
-          tweenLength: true, // ← gradual length growth
-        },
-      })
+      if (titleRef.current) {
+        gsap.to(titleRef.current, {
+          duration: 1.5, // ← 2 seconds instead of 1
+          scrambleText: {
+            text: title,
+            chars:
+              "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789",
+            revealDelay: 0.1,
+            speed: 0.5, // ← updates scrambled chars every 0.5s
+            tweenLength: true, // ← gradual length growth
+          },
+        })
+      }
+    } else {
+      if (titleRef.current) {
+        titleRef.current.textContent = title
+      }
     }
 
     setTimeout(() => {
       setShowDescription(true)
     }, 200)
-  }, [])
+  }, [animate, title])
 
   const chipsDetails = {
     svelte: {
@@ -94,19 +102,23 @@ export default function Unscrambling({
 
   useEffect(() => {
     if (descriptionRef.current && showDescription) {
-      gsap.to(descriptionRef.current, {
-        duration: 2.25,
-        scrambleText: {
-          text: description || "",
-          chars:
-            "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789",
-          revealDelay: 0.1,
-          speed: 0.5, // ← updates scrambled chars every 0.5s
-          tweenLength: true, // ← gradual length growth
-        },
-      })
+      if (animate) {
+        gsap.to(descriptionRef.current, {
+          duration: 2.25,
+          scrambleText: {
+            text: description || "",
+            chars:
+              "aAbBcCdDeEfFgGhHiIjJkKlLmMnNoOpPqQrRsStTuUvVwWxXyYzZ0123456789",
+            revealDelay: 0.1,
+            speed: 0.5, // ← updates scrambled chars every 0.5s
+            tweenLength: true, // ← gradual length growth
+          },
+        })
+      } else {
+        descriptionRef.current.textContent = description || ""
+      }
     }
-  }, [showDescription])
+  }, [showDescription, animate, description])
 
   const [showingBackground, setShowingBackground] = useState(false)
   const [showingChips, setShowingChips] = useState(false)
@@ -176,7 +188,11 @@ export default function Unscrambling({
               >
                 <p
                   ref={descriptionRef}
-                  className="text-gray-500 motion-opacity-in-0 motion-translate-x-in-25 motion-blur-in-xs"
+                  className={`text-gray-500 ${
+                    animate
+                      ? "motion-opacity-in-0 motion-translate-x-in-25 motion-blur-in-xs"
+                      : ""
+                  }`}
                 ></p>
               </div>
               <AnimatePresence>

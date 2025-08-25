@@ -84,6 +84,7 @@ export default function NewProjects({
         demoURL={project.demoURL}
         sourceURL={project.sourceURL}
         chips={project.chips}
+        animate={false}
       />
     </motion.div>
   ))
